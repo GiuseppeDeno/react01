@@ -1,16 +1,104 @@
-# React + Vite
+# 📰 Simple Blog – React Version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Questo progetto è la trasformazione di un **blog statico HTML/CSS/JavaScript** in una **Single Page Application React**, realizzata con **Vite**.
 
-Currently, two official plugins are available:
+L’obiettivo è studiare e applicare i concetti fondamentali di React:
+- componentizzazione
+- gestione dello stato
+- props
+- form controllati
+- rendering dinamico
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Tecnologie utilizzate
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React**
+- **Vite**
+- **JavaScript (ES6+)**
+- **CSS**
+- **Font Awesome**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Struttura del progetto
+
+src/
+│
+├── components/
+│ ├── Navbar.jsx
+│ ├── Header.jsx
+│ ├── LeftColumn.jsx
+│ ├── RightColumn.jsx
+│ ├── Form.jsx
+│ └── Footer.jsx
+│
+├── App.jsx
+├── main.jsx
+└── App.css
+
+
+---
+
+##  Cosa fa l’app
+
+###  Refactoring da HTML a React
+- Il layout originale HTML è stato suddiviso in **componenti React riutilizzabili**
+- Sostituzione di `class` con `className`
+- Struttura modulare e più manutenibile
+
+###  Sistema di iscrizione Guests
+- Form controllato con `useState`
+- Campi:
+  - Nome
+  - Email (con validazione HTML `type="email"`)
+- Alla sottomissione:
+  - viene creato un oggetto `guest`
+  - viene aggiunto allo stato globale tramite props
+- Visualizzazione:
+  - lista dei guests iscritti
+  - numero totale dei guests
+
+---
+
+##  Gestione dello stato
+
+Lo stato `guests` è gestito nel componente **App.jsx** e passato ai componenti figli tramite **props**, seguendo il principio di:
+
+> **Single source of truth**
+
+```js
+const [guests, setGuests] = useState([]);
+
+Prossimi sviluppi
+
+Persistenza dei guests con LocalStorage
+
+ Rimozione di un guest
+
+ Validazioni avanzate del form
+
+ Miglioramento UI / UX
+
+ Separazione componente GuestList
+
+ Avvio del progetto
+npm install
+npm run dev
+
+
+Obiettivo didattico
+Questo progetto nasce come esercizio pratico di apprendimento React, partendo da un progetto reale e già esistente, per comprendere:
+
+come “pensare a componenti”
+
+come gestire dati condivisi
+
+come far comunicare i componenti tra loro
+
+👤 Autore
+Giuseppe Denora
+
+yaml
+Copia codice
+

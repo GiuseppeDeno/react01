@@ -267,3 +267,11 @@
                 width: 100%;
             }
         }
+        .insert-form{
+            display :flex;
+            flex-direction: column;
+            gap:1rem;
+            width: 30vw;
+            margin: 0 auto;   /* CENTRA */
+            margin-bottom: 1rem;
+        }

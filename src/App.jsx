@@ -6,49 +6,47 @@ import Navbar from './components/Navbar';
 import Header from './components/Header';
 import LeftColumn from './components/LeftColumn';
 import RightColumn from './components/RightColumn';
-import Article from "./components/Article";
 
+import Form from './components/Form';
+import Footer from './components/Footer'
 
 function App() {
-  
+const [guests, setGuests]=useState([])
+/*stato che visualizza tutti i guests aggiunti */
+const totalGuests = guests.length;
+
 
   return (
     <>
-     <Navbar />
+      <Navbar />
 
 
-     <Header name="Giuseppe"/>
+      <Header name="Giuseppe" />
 
 
       <div className="main-content">
 
-       <LeftColumn />
+        <LeftColumn />
 
 
-       <RightColumn />
-       
+        <RightColumn />
+
+      </div>
+      {/*visualizza guest in un div */}
+        <div className="guests-list">
+        <h3>Guests iscritti ({totalGuests})</h3>
+        {guests.map((guest, index) => (
+          <div key={index}>
+            <strong>{guest.name}</strong> – {guest.email}
+          </div>
+        ))}
       </div>
 
+      <Form setGuests={setGuests} />
 
-      <footer className="footer">
-        <div className="footer-content">
-          <p>Simple Blog &copy; 2023. All rights reserved.</p>
-          <div className="footer-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Contact</a>
-          </div>
-          <p className="copyright">Designed with 
-            
-          
-          <i
-  className="fas fa-heart"
-  style={{ color: '#e74c3c' }}
-></i>
- for the web community</p>
-        </div>
-      </footer>
+      <Footer />
+
+
     </>
   )
 }
