@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+
 const GuestItem = ({ guest, setGuests }) => {
     useEffect(() => {
     console.log("Guest montato:", guest.name);

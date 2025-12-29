@@ -8,10 +8,12 @@ L’obiettivo è studiare e applicare i concetti fondamentali di React:
 - props
 - form controllati
 - rendering dinamico
+- ottimizzazione con **React.memo**
+- ricerca live con **FilterBar**
 
 ---
 
-##  Tecnologie utilizzate
+## Tecnologie utilizzate
 
 - **React**
 - **Vite**
@@ -21,8 +23,8 @@ L’obiettivo è studiare e applicare i concetti fondamentali di React:
 
 ---
 
-##  Struttura del progetto
-
+## Struttura del progetto
+```
 src/
 │
 ├── components/
@@ -31,63 +33,107 @@ src/
 │ ├── LeftColumn.jsx
 │ ├── RightColumn.jsx
 │ ├── Form.jsx
+│ ├── GuestItem.jsx
+│ ├── GuestList.jsx
+│ ├── FilterBar.jsx
 │ └── Footer.jsx
 │
 ├── App.jsx
 ├── main.jsx
 └── App.css
+```
+
+
 
 
 ---
 
-##  Cosa fa l’app
+## Funzionalità principali
 
-###  Refactoring da HTML a React
-- Il layout originale HTML è stato suddiviso in **componenti React riutilizzabili**
+### 1. Refactoring da HTML a React
+- Layout originale HTML suddiviso in **componenti React riutilizzabili**
 - Sostituzione di `class` con `className`
 - Struttura modulare e più manutenibile
 
-###  Sistema di iscrizione Guests
+### 2. Sistema di iscrizione Guests
 - Form controllato con `useState`
 - Campi:
   - Nome
   - Email (con validazione HTML `type="email"`)
+  - Password
+  - `isAdmin` (checkbox)
 - Alla sottomissione:
-  - viene creato un oggetto `guest`
-  - viene aggiunto allo stato globale tramite props
+  - viene creato un oggetto `guest` con `id` univoco
+  - aggiunto allo stato globale tramite props
 - Visualizzazione:
   - lista dei guests iscritti
   - numero totale dei guests
+  - rendering condizionale: se `isAdmin` → mostra “È un amministratore”, altrimenti “Non è un amministratore”
+- Possibilità di **rimuovere singoli guest** con un bottone ❌
+- Persistenza tramite **LocalStorage**
+
+### 3. Ricerca live
+- Componente `FilterBar` permette di filtrare i guest per nome
+- Aggiornamento in tempo reale della lista durante la digitazione
+- Possibilità di resettare il campo di ricerca con un pulsante
+
+### 4. Ottimizzazione con React.memo
+- `GuestItem` è memoizzato con `React.memo` per evitare re-render non necessari
+- Solo i guest modificati o aggiunti vengono renderizzati nuovamente
 
 ---
 
-##  Gestione dello stato
+## Gestione dello stato
 
-Lo stato `guests` è gestito nel componente **App.jsx** e passato ai componenti figli tramite **props**, seguendo il principio di:
-
-> **Single source of truth**
+Lo stato principale `guests` è gestito nel componente **App.jsx** e passato ai figli tramite props, seguendo il principio di **single source of truth**:
 
 ```js
 const [guests, setGuests] = useState([]);
+const [searchGuest, setSearchGuest] = useState("");
+setGuests permette ai componenti figli (Form, GuestList) di aggiornare lo stato
 
-Prossimi sviluppi
+searchGuest gestisce l’input di ricerca per il filtro live
 
-Persistenza dei guests con LocalStorage
+Componenti principali
 
- Rimozione di un guest
+Form.jsx → gestisce la creazione di nuovi guest
 
- Validazioni avanzate del form
+GuestList.jsx → mostra la lista dei guest filtrati
 
- Miglioramento UI / UX
+GuestItem.jsx → singolo guest, memoizzato con React.memo
 
- Separazione componente GuestList
+FilterBar.jsx → input di ricerca con pulsante di reset
 
- Avvio del progetto
+Navbar/Header/LeftColumn/RightColumn/Footer → layout e struttura del blog
+
+Diagramma componenti
+
+App
+├─ Navbar
+├─ Header
+├─ LeftColumn
+├─ RightColumn
+├─ FilterBar
+├─ GuestList
+│   └─ GuestItem (React.memo)
+├─ Form
+└─ Footer
+App
+├─ Navbar
+├─ Header
+├─ LeftColumn
+├─ RightColumn
+├─ FilterBar
+├─ GuestList
+│   └─ GuestItem (React.memo)
+├─ Form
+└─ Footer
+Avvio del progetto
 npm install
 npm run dev
 
+Obiettivi didattici
 
-Obiettivo didattico
 Questo progetto nasce come esercizio pratico di apprendimento React, partendo da un progetto reale e già esistente, per comprendere:
 
 come “pensare a componenti”
@@ -96,9 +142,10 @@ come gestire dati condivisi
 
 come far comunicare i componenti tra loro
 
-👤 Autore
-Giuseppe Denora
+come ottimizzare i render con React.memo
 
-yaml
-Copia codice
+come implementare una ricerca live e form controllati
 
+Autore
+
+👤 Giuseppe Denora

@@ -10,6 +10,7 @@ import RightColumn from './components/RightColumn';
 import Form from './components/form';
 import Footer from './components/Footer'
 import GuestList from './components/GuestList';
+import FilterBar from './components/FilterBar';
 
 function App() {
 const [guests, setGuests]=useState(()=>{
@@ -19,7 +20,7 @@ const [guests, setGuests]=useState(()=>{
   });
 /*stato che visualizza tutti i guests aggiunti 
 const totalGuests = guests.length;*/
-
+const [searchGuest, setSearchGuest] = useState("");
 
 /*per usare il LS bisogna usare lo useEffect 
 useEffect(()=>{
@@ -61,8 +62,17 @@ useEffect(()=>{
         ))}
       </div>*/}
       
+<FilterBar
+  searchGuest={searchGuest}
+  setSearchGuest={setSearchGuest}
+/>
 
-   <GuestList guests={guests} setGuests={setGuests} />
+<GuestList
+  guests={guests}
+  setGuests={setGuests}
+  searchGuest={searchGuest}
+/>
+ 
       <Form setGuests={setGuests} />
 
       <Footer />
