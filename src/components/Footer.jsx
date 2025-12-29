@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>Simple Blog &copy; 2023. All rights reserved.</p>
+        <p>Simple Blog &copy; 2025. All rights reserved.</p>
 
         <div className="footer-links">
           <a href="#">Home</a>
