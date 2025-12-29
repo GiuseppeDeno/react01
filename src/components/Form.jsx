@@ -22,23 +22,29 @@ Reactvuole:
 const Form = ({ setGuests }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [psw, setPsw] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("submitted", { name, email })
+        console.log("submitted", { name, email, psw, isAdmin })
         /* crea un oggetto Guest che poi viene visualizzato in un div. passiamo i valori
         name e email come props*/
         const newGuest = {
-            id: Date.now(),   // id univoco in millisecondi
+           id: Date.now() ,   // id univoco in millisecondi
             name,
             email,
+            psw,
+            isAdmin,
 
         };
         setGuests(prev => [...prev, newGuest]);
 
         setName("");
         setEmail("");
+        setPsw("");
+        setIsAdmin(false);
 
     }
 
@@ -61,7 +67,27 @@ const Form = ({ setGuests }) => {
 
 
             </input>
-            <button type="submit">inserisci Guests </button>
+            <input
+                type="password"
+                name="psw"
+                value={psw}
+                placeholder="inserisci la tua psw"
+                onChange={(e) => setPsw(e.target.value)}
+                required>
+
+
+            </input>
+            {/* Checkbox con label */}
+            <label>
+                <input
+                    type="checkbox"
+                    name="isAdmin"
+                    checked={isAdmin}
+                    onChange={(e) => setIsAdmin(e.target.checked)}
+                />
+                Admin
+            </label>
+            <button type="submit">iscriviti </button>
         </form>
     );
 };

@@ -7,7 +7,7 @@ import Header from './components/Header';
 import LeftColumn from './components/LeftColumn';
 import RightColumn from './components/RightColumn';
 
-import Form from './components/Form';
+import Form from './components/form';
 import Footer from './components/Footer'
 import GuestList from './components/GuestList';
 

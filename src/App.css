@@ -267,6 +267,12 @@
                 width: 100%;
             }
         }
+
+
+
+
+
+        
         .insert-form{
             display :flex;
             flex-direction: column;
@@ -275,3 +281,27 @@
             margin: 0 auto;   /* CENTRA */
             margin-bottom: 1rem;
         }
+
+
+
+
+
+
+
+      .guests-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 card  */
+  gap: 16px;
+}
+
+.guest-card{
+    margin-bottom: 10px;
+}
+.guest-box{
+   
+    margin:0 auto;
+}
+.guest-title {
+  text-align: center;  
+  margin-bottom: 16px;
+}

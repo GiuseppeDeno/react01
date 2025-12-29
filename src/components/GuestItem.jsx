@@ -1,5 +1,11 @@
-
+import { useEffect } from "react";
 const GuestItem = ({ guest, setGuests }) => {
+    useEffect(() => {
+    console.log("Guest montato:", guest.name);
+    return () => console.log("Guest rimosso:", guest.name);
+  }, []);
+  
+
 
     const handleDelete = () => {
     setGuests((prev) =>
@@ -22,14 +28,20 @@ tranne quello con lo stesso id
 📌 Solo l’elemento cliccato viene escluso.*/
 
     return (
-    <div className="guest-card">
+    
+ <div className="guest-card">
       <p><strong>{guest.name}</strong></p>
       <p>{guest.email}</p>
-
+     <p> {guest.isAdmin ? "È un amministratore" : "Non è un amministratore"}</p>
+     
       <button onClick={handleDelete}>❌ Elimina</button>
     </div>
+     
+   
   );
 };
 
 
-export default GuestItem;
+// memoizzazione
+export default React.memo(GuestItem);
+/// usando React.memo non somonto e monto tutti icomponenti di Guestlist, ma solo quello cambiati! //prima avevo  export default GuestItem.!!
