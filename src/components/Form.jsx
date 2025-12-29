@@ -30,6 +30,7 @@ const Form = ({ setGuests }) => {
         /* crea un oggetto Guest che poi viene visualizzato in un div. passiamo i valori
         name e email come props*/
         const newGuest = {
+            id: Date.now(),   // id univoco in millisecondi
             name,
             email,
 
